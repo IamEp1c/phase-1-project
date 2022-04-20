@@ -11,6 +11,8 @@ const userSelection = (animeName) => {
     .then(resp => resp.json())
     .then(data => {
         console.log(data)
+        console.log(data.data)
+        renderFact(data.data)
 
 })
 } // end of userSelection
@@ -18,8 +20,22 @@ const userSelection = (animeName) => {
 document.querySelector('.dropdown-content').addEventListener('click', (e) =>{
     console.log(e.target.id)
     userSelection(e.target.id);
-
+    renderFact()
 })
+
+
+const renderFact = (data) => {
+    data.forEach(anime => {
+        console.log(anime.fact)
+        
+        const ul = document.querySelector('#ul')
+        const li = document.createElement('li')
+        li.textContent = anime.fact
+        ul.append(li)
+    })
+}
+
+
 // 
 
  
