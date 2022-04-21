@@ -10,9 +10,12 @@
     <title>Anime Quiz App</title>
 </head>
 <body>
-    <h1>Welcome to our Anime Quiz!</h1>
+    <h1 id="h1">Welcome to our Anime Facts Generator!</h1>
     <br>
+    <div id="randomQuotes">
     <button class="start-button">Click here for a random anime fact!</button>
+    <div id="quotesContainer"></div>
+  </div>
     <br>
     <div class="dropdown">
         <button class="dropbtn">Select an Anime here for a specific fact!</button>
@@ -33,6 +36,7 @@
           </ol>
       </div>
       <div>
+        <em><h3 id="h3">Post a comment here!</h3></em>
         <form id="comments-form">
           <input type="text" placeholder="Enter Comment" id="comment" name="comment" />
           <input type="submit" value="Submit" />
