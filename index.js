@@ -28,12 +28,14 @@ const renderFact = (data) => {
     data.forEach(anime => {
         console.log(anime.fact)
         
-        const ul = document.querySelector('#ul')
+        const ul = document.querySelector('#ol')
         const li = document.createElement('li')
         li.textContent = anime.fact
         ul.append(li)
     })
 }
+
+
 
 
 // 
