@@ -10,28 +10,25 @@ document.addEventListener('DOMContentLoaded', (e) => {
         fetch(`https://anime-facts-rest-api.herokuapp.com/api/v1/${animeName}`)
             .then(resp => resp.json())
             .then(data => {
-                // console.log(data)
-                renderFact(data.data)
+                renderFacts(data.data)
 
             })
-    } // end of userSelection
+    }
     // grabs the drop down menu and puts the names in the function userSelection and grabs each name of the anime
     document.querySelector('.dropdown-content').addEventListener('click', (e) => {
-        // console.log(e.target.id)
         userSelection(e.target.id);
 
-        
+
     })
 
+    const renderFacts = (data) => {
+        data.forEach(anime => {
 
-    const renderFact = (data) => {
-        data.forEach(anime  => {
-            console.log(anime.fact)
-
-            const ul = document.querySelector('#ol')
+            const ol = document.querySelector('#ol')
             const li = document.createElement('li')
             li.textContent = anime.fact
-            ul.append(li)
+            ol.append(li)
+            
         })
     }
 
@@ -43,48 +40,45 @@ document.addEventListener('DOMContentLoaded', (e) => {
         const li = document.createElement('li')
         const newComment = document.querySelector('#comment')
         li.textContent = newComment.value
-        ul.append(li)        
+        ul.append(li)
+        form.reset();
+        })
+    
+
+    const randomFactSelector = (data) => {
+        const index = Math.floor(Math.random() * data.data.length);
+        return data.data[index].fact
+
+    }
+
+    // click event for Random Generator
+    const startButton = document.querySelector('.start-button')
+    const quotesContainer = document.querySelector('#quotesContainer')
+
+
+
+    startButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const animeNames = ['attack_on_titan', 'jujutsu_kaisen', 'demon_slayer', 'boku_no_hero_academia', 'naruto', 'dragon_ball', 'fma_brotherhood']
+        const index = Math.floor(Math.random() * animeNames.length);
+        const animeName = animeNames[index]
+        const p = document.createElement('p')
+        fetch(`https://anime-facts-rest-api.herokuapp.com/api/v1/${animeName}`)
+            .then(resp => resp.json())
+            .then(data => {
+                p.textContent = randomFactSelector(data)
+            })
+
+        quotesContainer.innerHTML = ''
+        quotesContainer.append(p)
+
     })
 
 
 
-const randomFactSelector = (data) => {
-    const index =  Math.floor(Math.random() * data.data.length);
-    return data.data[index].fact
-
-}
 
 
-
-
-// click event for Random Generator
-const startButton = document.querySelector('.start-button')
-const quotesContainer = document.querySelector('#quotesContainer')
-
-
-
-startButton.addEventListener('click', (e) =>{
-    e.preventDefault();
-    
-    const animeNames = ['attack_on_titan', 'jujutsu_kaisen', 'demon_slayer']
-    const index =  Math.floor(Math.random() * animeNames.length);
-    const animeName = animeNames[index]
-    const p = document.createElement('p')
-    fetch(`https://anime-facts-rest-api.herokuapp.com/api/v1/${animeName}`)
-    .then(resp => resp.json())
-    .then(data => {
-        p.textContent = randomFactSelector(data)
-    })
-
-    quotesContainer.innerHTML = ''
-    quotesContainer.append(p)
-    
-})
-
-
-
-
- 
 }) // end of domContentLoaded
 
 
