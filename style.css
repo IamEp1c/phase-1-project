@@ -1,6 +1,6 @@
 
 body {
-    background-color: rgb(28, 126, 136);
+  background-image: linear-gradient(to right, #DECBA4, #3E5151);
     text-align: center;
     padding: 15%;
 }
@@ -17,7 +17,7 @@ body {
 
 
 .dropbtn {
-    background-color: #04AA6D;
+    background-color: #04aa62;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -50,3 +50,10 @@ body {
   .dropdown:hover .dropdown-content {display: block;}
   
   .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+#firstTitan {
+  max-width: 30%;
+  height: auto;
+  
+}
